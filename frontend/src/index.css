@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Consolas, monospace;
+
+  --color-bg: #0a0a0a;
+  --color-bg-section: #111111;
+  --color-card: #161616;
+  --color-border: #2a2a2a;
+  --color-border-hover: #3a3a3a;
+
+  --color-text: #e8e8e8;
+  --color-text-dim: #888888;
+  --color-text-muted: #555555;
+
+  --color-accent: #00ff88;
+  --color-accent-dim: rgba(0, 255, 136, 0.35);
+  --color-accent-bg: rgba(0, 255, 136, 0.06);
+  --color-accent-border: rgba(0, 255, 136, 0.42);
+
+  --color-blue: #4488ff;
+  --color-purple: #aa66ff;
+  --color-amber: #ffaa00;
+  --color-red: #ff4455;
+
+  --color-buy: #00ff88;
+  --color-accumulate: #ffaa00;
+  --color-hold: #888888;
+  --color-reduce: #ff8844;
+  --color-avoid: #ff4455;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.5;
+    color-scheme: dark;
+    color: var(--color-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(0, 255, 136, 0.2);
+    color: #e8e8e8;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a;
+  }
+}
+
+@layer utilities {
+  .tracking-terminal {
+    letter-spacing: 0.08em;
+  }
+
+  .tracking-heading {
+    letter-spacing: 0.14em;
+  }
+
+  .tracking-wide-label {
+    letter-spacing: 0.06em;
+  }
+
+  .glow-accent {
+    box-shadow:
+      0 0 0 1px rgba(0, 255, 136, 0.08),
+      0 0 32px rgba(0, 255, 136, 0.14),
+      0 12px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .card-terminal {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .card-terminal:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  @keyframes pulse-live {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 6px #00ff88, 0 0 12px rgba(0, 255, 136, 0.5);
+    }
+    50% {
+      opacity: 0.2;
+      box-shadow: none;
+    }
+  }
+
+  .animate-pulse-live {
+    animation: pulse-live 1.5s ease-in-out infinite;
+  }
+}
