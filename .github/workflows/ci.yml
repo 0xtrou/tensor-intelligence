@@ -91,7 +91,7 @@ jobs:
   badges:
     needs: [backend, frontend]
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]'
 
     steps:
       - uses: actions/checkout@v4

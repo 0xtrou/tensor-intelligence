@@ -1,0 +1,2 @@
+python -m pytest tests/ -q --tb=line
+cd frontend && npx vitest run --reporter=verbose
