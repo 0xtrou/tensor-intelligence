@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/0xtrou/tensor-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/0xtrou/tensor-intelligence/actions/workflows/ci.yml)
 ![Backend Coverage](badges/backend.svg)
-![Frontend Coverage](badges/frontend/coverage.svg)
+![Frontend Coverage](badges/frontend.svg)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688.svg)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg)](https://react.dev)

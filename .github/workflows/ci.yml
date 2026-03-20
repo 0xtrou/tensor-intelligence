@@ -73,17 +73,11 @@ jobs:
         working-directory: frontend
         run: npx vitest run --coverage --coverage.reporter=json --coverage.reporter=json-summary
 
-      - name: Generate coverage badge
-        uses: jpb06/coverage-badges-action@v1.4.8
-        with:
-          coverage-summary-path: frontend/coverage/coverage-summary.json
-          badges-directory: badges/frontend
-
-      - name: Upload coverage badge
+      - name: Upload coverage summary
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-badge-frontend
-          path: badges/frontend
+          name: coverage-summary-frontend
+          path: frontend/coverage/coverage-summary.json
 
       - name: Build
         working-directory: frontend
@@ -97,7 +91,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/download-artifact@v4
         with:
@@ -106,8 +100,19 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: coverage-badge-frontend
-          path: badges
+          name: coverage-summary-frontend
+          path: coverage
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate frontend coverage badge
+        run: |
+          pip install coverage-badge setuptools
+          TOTAL=$(python3 -c "import json; d=json.load(open('coverage/coverage-summary.json')); print(d['total']['lines']['pct'])")
+          COVERAGE_INT=$(python3 -c "print(int(float('$TOTAL')))")
+          coverage-badge -o badges/frontend.svg "$COVERAGE_INT"
 
       - name: Commit coverage badges
         run: |
