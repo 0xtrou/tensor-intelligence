@@ -17,10 +17,18 @@ nosetests.xml
 coverage.xml
 *.cover
 *.log
-.git
 .mypy_cache/
 .pytest_cache/
 .hypothesis/
+
+# Node
+node_modules/
+
+# Build
+frontend/dist/
+
+# Screenshots / captures
+*.png
 
 # IDE
 .vscode/
@@ -42,3 +50,11 @@ postgres_data/
 # OS
 .DS_Store
 Thumbs.db
+
+# GitNexus
+.gitnexus
+
+# Claude Code
+.claude/
+CLAUDE.md
+AGENTS.md
