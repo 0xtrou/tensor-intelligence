@@ -34,13 +34,6 @@ const BREAKDOWN_LABELS: Record<string, string> = {
   crash_risk: 'Crash',
 };
 
-const THRESHOLD_MARKS = [
-  { label: 'BUY', value: 70, color: '#00ff88' },
-  { label: 'ACCUM', value: 50, color: '#ffaa00' },
-  { label: 'HOLD', value: 30, color: '#888888' },
-  { label: 'REDUCE', value: 15, color: '#ff8844' },
-];
-
 const THRESHOLD_SEGMENTS = [
   { min: 70, max: 100, label: 'BUY', color: '#00ff88' },
   { min: 50, max: 70, label: 'ACCUM', color: '#ffaa00' },
@@ -71,7 +64,7 @@ interface ResonanceInfo {
   nextScore: number;
 }
 
-function computeResonance(prev: number, next: number, stageName: string): ResonanceInfo {
+function computeResonance(prev: number, next: number, _stageName: string): ResonanceInfo {
   const delta = next - prev;
   const bothUp = prev >= 50 && next >= 50;
   const bothDown = prev < 50 && next < 50;
