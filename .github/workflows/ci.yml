@@ -35,7 +35,6 @@ jobs:
         run: |
           pip install -e ".[dev]" aiosqlite
           pip install pytest pytest-asyncio pytest-cov httpx
-          pip install coverage-badge setuptools
 
       - name: Run tests
         env:
@@ -43,9 +42,7 @@ jobs:
         run: pytest tests/ -v --cov=src --cov-report=term-missing --cov-report=json:coverage-backend.json
 
       - name: Generate coverage badge
-        run: |
-          pip install setuptools
-          coverage-badge -o badges/backend.svg -f coverage-backend.json
+        run: python3 scripts/generate_badge.py coverage-backend.json badges/backend.svg --backend
 
       - name: Upload coverage badge
         uses: actions/upload-artifact@v4
@@ -110,11 +107,7 @@ jobs:
           python-version: "3.12"
 
       - name: Generate frontend coverage badge
-        run: |
-          pip install coverage-badge setuptools
-          TOTAL=$(python3 -c "import json; d=json.load(open('coverage/coverage-summary.json')); print(d['total']['lines']['pct'])")
-          COVERAGE_INT=$(python3 -c "print(int(float('$TOTAL')))")
-          coverage-badge -o badges/frontend.svg "$COVERAGE_INT"
+        run: python3 scripts/generate_badge.py coverage/coverage-summary.json badges/frontend.svg
 
       - name: Commit coverage badges
         run: |
