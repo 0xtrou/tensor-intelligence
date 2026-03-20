@@ -43,7 +43,9 @@ jobs:
         run: pytest tests/ -v --cov=src --cov-report=term-missing --cov-report=json:coverage-backend.json
 
       - name: Generate coverage badge
-        run: coverage-badge -o badges/backend.svg -f coverage-backend.json
+        run: |
+          pip install setuptools
+          coverage-badge -o badges/backend.svg -f coverage-backend.json
 
       - name: Upload coverage badge
         uses: actions/upload-artifact@v4
